@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: #3B4664;
+}
+
+#calculator-container{
+    margin: 4rem auto 0 auto;
+    width: 500px;
+    background: black;
+    height: 500px;
+    color: white;
+}
