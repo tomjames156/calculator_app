@@ -410,7 +410,7 @@ body.purple-theme #calculator-container .third-div div #delete:hover, body.purpl
   background: #8631b0;
 }
 
-/* @media screen and (max-width: 550px) {
+@media screen and (max-width: 550px) {
   body.blue-theme #calculator-container {
     width: 275px;
   }
@@ -439,4 +439,4 @@ body.purple-theme #calculator-container .third-div div #delete:hover, body.purpl
   body.purple-theme #calculator-container .third-div #reset, body.purple-theme #calculator-container .third-div #delete, body.purple-theme #calculator-container .third-div #equals {
     font-size: 1.25rem;
   }
-} */
+}
