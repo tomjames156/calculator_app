@@ -4,17 +4,45 @@
     <meta charset="utf-8" lang="en">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator Web App</title>
+    <title>Calculator Web App</title>    
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme">
     <div id="calculator-container">
         <div class="first-div">
             <p class="name">calc</p>
-            
+            <div class="themes">
+                <div class="theme-text">
+                    <p class="text">THEME</p>          
+                </div>
+                <div class="themes-selection">
+                    <div>
+                        <p>1 2 3</p>  
+                    </div>
+                    <div id="select-theme">
+                        <div class="theme-1"></div>
+                        <div class="theme-2"></div>
+                        <div class="theme-3"></div>
+                    </div>
+                </div>                                
+            </div>
+        </div>
+        <div class="second-div">
+            <form action="index.html">
+                <input type="text" name="input" id="input" placeholder="33895">
+            </form>
+        </div>
+        <div class="third-div">
+            <div>
+                <p>7</p><p>8</p><p>9</p><p id="delete">DEL</p>
+                <p>4</p><p>5</p><p>6</p><p>+</p>
+                <p>1</p><p>2</p><p>3</p><p>-</p>
+                <p>.</p><p>0</p><p>/</p><p>&times</p>
+                <p id="reset">RESET</p><p id="equals">=</p>
+            </div>
         </div>
 
     </div>
 </body>
-
+<script src="calculator.js"></script>
 </html>
