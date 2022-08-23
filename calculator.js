@@ -37,14 +37,16 @@ function getGreaterlength(a, b){
     return greatest_length;
 }
 
-add = (a, b) => (parseFloat(a) + parseFloat(b)).toPrecision(getGreaterlength(a, b));
-subtract = (a, b) => (parseFloat(a) - parseFloat(b)).toPrecision(getGreaterlength(a, b));
-divide = (a, b) => (parseFloat(a) / parseFloat(b)).toPrecision(getGreaterlength(a, b));
-multiply = (a, b) => (a * b).toPrecision(getGreaterlength(a, b));
+add = (a, b) => (parseInt(a) + parseInt(b));
+subtract = (a, b) => (parseFloat(a) - parseFloat(b));
+divide = (a, b) => (parseFloat(a) / parseFloat(b));
+multiply = (a, b) => (parseInt(a) * parseInt(b));
+
+// update so only if it one input has a point will i need the .toPrecision();
 
 deleteInput = () => input.value = input.value.substring(0, input.value.length - 1);
 
-resetCalc = () => input.value = 0;
+resetCalc = () => input.value = "";
 
 inputValue = (rcpnt) => input.value += rcpnt.innerHTML;
 
