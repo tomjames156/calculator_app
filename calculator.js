@@ -55,7 +55,7 @@ divide = (a, b) => {
     if(a.includes(".") || (b.includes("."))){
         return (parseFloat(a) / parseFloat(b).toFixed(4));
     }else{
-        return parseInt(a) - parseInt(b)
+        return parseInt(a) / parseInt(b)
     }
 };
 multiply = (a, b) => {
