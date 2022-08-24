@@ -37,10 +37,34 @@ function getGreaterlength(a, b){
     return greatest_length;
 }
 
-add = (a, b) => (parseInt(a) + parseInt(b));
-subtract = (a, b) => (parseFloat(a) - parseFloat(b));
-divide = (a, b) => (parseFloat(a) / parseFloat(b));
-multiply = (a, b) => (parseInt(a) * parseInt(b));
+add = (a, b) => {
+    if(a.includes(".") || (b.includes("."))){
+        return (parseFloat(a) + parseFloat(b)).toPrecision(getGreaterlength(a, b))
+    }else{
+        return parseInt(a) + parseInt(b)
+    }
+};
+subtract = (a, b) => {
+    if(a.includes(".") || (b.includes("."))){
+        return (parseFloat(a) - parseFloat(b)).toPrecision(getGreaterlength(a, b))
+    }else{
+        return parseInt(a) - parseInt(b)
+    }
+}
+divide = (a, b) => {
+    if(a.includes(".") || (b.includes("."))){
+        return (parseFloat(a) / parseFloat(b).toFixed(4));
+    }else{
+        return parseInt(a) - parseInt(b)
+    }
+};
+multiply = (a, b) => {
+    if(a.includes(".") || (b.includes("."))){
+        return (parseFloat(a) * parseFloat(b)).toPrecision(getGreaterlength(a, b))
+    }else{
+        return parseInt(a) * parseInt(b)
+    }
+};
 
 // update so only if it one input has a point will i need the .toPrecision();
 
