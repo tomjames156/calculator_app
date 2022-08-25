@@ -1,6 +1,7 @@
 'use strict';
 let themeBtns = document.getElementById("select-theme").children;
 let body = document.querySelector("body.theme");
+const evalOutput = document.getElementById("evaluation");
 const operatorsSet = new Set(["/", "&times", "+", "-", "×", "*"]);
 const operators = document.querySelectorAll("p.operator");
 const numbers = document.querySelectorAll("p.number");
@@ -84,11 +85,13 @@ resetCalc = () => input.value = "";
 
 inputValue = (rcpnt) => {
     setFocus();
+    removeEvaluationOutput();
     input.value += rcpnt.innerHTML;
 };
 
 for(let i = 0; i < operators.length; i++){
     operators[i].addEventListener("click", () => {
+        removeEvaluationOutput();
         if(operatorsSet.has(input.value[input.value.length - 1])){
             input.value = input.value.substring(0, input.value.length - 1);
         }
@@ -128,6 +131,7 @@ async function evaluate() {
                 }else if(operatorInUse == "+"){
                     resolve(add(input1, input2));
                 }
+                evalOutput.innerHTML = input1 + operatorInUse + input2 + "=";
             }
         }
     });
@@ -148,3 +152,9 @@ async function checkOperators(){
 }
 
 equalsBtn.addEventListener("click", evaluate);
+
+function removeEvaluationOutput(){
+    evalOutput.innerHTML = "";
+}
+
+input.addEventListener("keydown", removeEvaluationOutput)

@@ -76,13 +76,19 @@ body.blue-theme #calculator-container .first-div .themes .themes-selection > div
 }
 body.blue-theme #calculator-container div.second-div {
   width: 100%;
+  position: relative;
   background: #181f32;
   border-radius: 0.5rem;
+}
+body.blue-theme #calculator-container div.second-div form p {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  font-size: 0.8rem;
 }
 body.blue-theme #calculator-container div.second-div input {
   border: none;
   width: 100%;
-  margin: 0 auto;
   background: transparent;
   padding: 1rem;
   text-align: right;
@@ -211,13 +217,19 @@ body.beige-theme #calculator-container .first-div .themes .themes-selection > di
 }
 body.beige-theme #calculator-container div.second-div {
   width: 100%;
+  position: relative;
   background: #eeeeee;
   border-radius: 0.5rem;
+}
+body.beige-theme #calculator-container div.second-div form p {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  font-size: 0.8rem;
 }
 body.beige-theme #calculator-container div.second-div input {
   border: none;
   width: 100%;
-  margin: 0 auto;
   background: transparent;
   padding: 1rem;
   text-align: right;
@@ -346,13 +358,19 @@ body.purple-theme #calculator-container .first-div .themes .themes-selection > d
 }
 body.purple-theme #calculator-container div.second-div {
   width: 100%;
+  position: relative;
   background: #1e0836;
   border-radius: 0.5rem;
+}
+body.purple-theme #calculator-container div.second-div form p {
+  position: absolute;
+  right: 2rem;
+  top: 0;
+  font-size: 0.8rem;
 }
 body.purple-theme #calculator-container div.second-div input {
   border: none;
   width: 100%;
-  margin: 0 auto;
   background: transparent;
   padding: 1rem;
   text-align: right;
