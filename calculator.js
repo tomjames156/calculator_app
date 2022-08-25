@@ -27,52 +27,65 @@ for(let i = 0; i < themeBtns.length; i++){
 
 themeBtns[0].click();
 
-function getGreaterlength(a, b){
-    let greatest_length = 0;
-    if(a.length >= b.length){
-        greatest_length = a.length;
-    }else if(b.length > a.length){
-        greatest_length = b.length;
+function removeZeros(value){
+    value = value.split("");
+    if(value.includes(".")){
+        for(let i = value.length; i >= 0; i--){
+            if(value[i] == "."){
+                break;
+            }else if(value[i] != "." && value[i] == 0){
+                value.pop();
+            }
+        }
     }
-    return greatest_length;
+
+    if(value[value.length -1] == "."){
+        value.pop();
+    }
+    
+    return value.join("");
 }
 
 add = (a, b) => {
     if(a.includes(".") || (b.includes("."))){
-        return (parseFloat(a) + parseFloat(b)).toPrecision(getGreaterlength(a, b))
+        return (parseFloat(a) + parseFloat(b));
     }else{
-        return parseInt(a) + parseInt(b)
-    }
-};
-subtract = (a, b) => {
-    if(a.includes(".") || (b.includes("."))){
-        return (parseFloat(a) - parseFloat(b)).toPrecision(getGreaterlength(a, b))
-    }else{
-        return parseInt(a) - parseInt(b)
+        return parseInt(a) + parseInt(b);
     }
 }
+
+subtract = (a, b) => {
+    if(a.includes(".") || (b.includes("."))){
+        return (parseFloat(a) - parseFloat(b));
+    }else{
+        return parseInt(a) - parseInt(b);
+    }
+}
+
 divide = (a, b) => {
     if(a.includes(".") || (b.includes("."))){
-        return (parseFloat(a) / parseFloat(b).toFixed(4));
+        return removeZeros((parseFloat(a) / parseFloat(b)).toFixed(7));
     }else{
-        return parseInt(a) / parseInt(b)
+        return removeZeros((parseInt(a) / parseInt(b)).toFixed(7));
     }
-};
+}
+
 multiply = (a, b) => {
     if(a.includes(".") || (b.includes("."))){
-        return (parseFloat(a) * parseFloat(b)).toPrecision(getGreaterlength(a, b))
+        return removeZeros((parseFloat(a) * parseFloat(b)).toFixed(7));
     }else{
-        return parseInt(a) * parseInt(b)
+        return parseInt(a) * parseInt(b);
     }
 };
-
-// update so only if it one input has a point will i need the .toPrecision();
 
 deleteInput = () => input.value = input.value.substring(0, input.value.length - 1);
 
 resetCalc = () => input.value = "";
 
-inputValue = (rcpnt) => input.value += rcpnt.innerHTML;
+inputValue = (rcpnt) => {
+    setFocus();
+    input.value += rcpnt.innerHTML;
+};
 
 for(let i = 0; i < operators.length; i++){
     operators[i].addEventListener("click", () => {
@@ -83,9 +96,21 @@ for(let i = 0; i < operators.length; i++){
     })    
 }
 
+function setFocus(){
+    input.focus();
+}
 
-let test = '4+3';
-let myArray = ["/", "&times", "+", "-"];
+function hasOperator(string){
+    let current_status = false;
+    for(let operator of operatorsSet){
+        if(string.includes(operator)){
+            current_status = true;
+        }
+    }
+
+    return current_status;
+}
+
 
 async function evaluate() {
     let solvePromise = new Promise(function(resolve){
@@ -96,7 +121,7 @@ async function evaluate() {
                 let input2 = input.value.split(operatorInUse)[1];
                 if(operatorInUse == "/"){
                     resolve(divide(input1, input2));
-                }else if(operatorInUse == "&times" || operatorInUse == "×"){
+                }else if(operatorInUse == "&times" || operatorInUse == "×" || operatorInUse == "*"){
                     resolve(multiply(input1, input2));
                 }else if(operatorInUse == "-"){
                     resolve(subtract(input1, input2));
@@ -110,8 +135,16 @@ async function evaluate() {
     input.value = await solvePromise;
 }
 
-equalsBtn.addEventListener("click", evaluate);
-// if one operator has been inputed solve before allowing a second one to be added 
-// for typed multiplication
+async function checkOperators(){
+    let moreThanOne = new Promise(function(resolve){        
+    let myTester = input.value;
+    let lastOperatorRemoved = myTester.substring(0, myTester.length - 1);
+        if(hasOperator(myTester[myTester.length - 1]) && hasOperator(lastOperatorRemoved)){          
+            input.value = lastOperatorRemoved;
+            evaluate();
+        }
+    })
+    input.value += await moreThanOne;
+}
 
-console.log(4.5 * 2);
+equalsBtn.addEventListener("click", evaluate);
