@@ -2,7 +2,7 @@
 let themeBtns = document.getElementById("select-theme").children;
 let body = document.querySelector("body.theme");
 const evalOutput = document.getElementById("evaluation");
-const operatorsSet = new Set(["/", "&times", "+", "-", "×", "*"]);
+const operatorsSet = new Set(["/", "&times", "+", "-", "×","*", "."]);
 const operators = document.querySelectorAll("p.operator");
 const numbers = document.querySelectorAll("p.number");
 const input = document.getElementById("input");
@@ -47,41 +47,12 @@ function removeZeros(value){
     return value.join("");
 }
 
-add = (a, b) => {
-    if(a.includes(".") || (b.includes("."))){
-        return (parseFloat(a) + parseFloat(b));
-    }else{
-        return parseInt(a) + parseInt(b);
-    }
-}
-
-subtract = (a, b) => {
-    if(a.includes(".") || (b.includes("."))){
-        return (parseFloat(a) - parseFloat(b));
-    }else{
-        return parseInt(a) - parseInt(b);
-    }
-}
-
-divide = (a, b) => {
-    if(a.includes(".") || (b.includes("."))){
-        return removeZeros((parseFloat(a) / parseFloat(b)).toFixed(7));
-    }else{
-        return removeZeros((parseInt(a) / parseInt(b)).toFixed(7));
-    }
-}
-
-multiply = (a, b) => {
-    if(a.includes(".") || (b.includes("."))){
-        return removeZeros((parseFloat(a) * parseFloat(b)).toFixed(7));
-    }else{
-        return parseInt(a) * parseInt(b);
-    }
-};
-
 deleteInput = () => input.value = input.value.substring(0, input.value.length - 1);
 
-resetCalc = () => input.value = "";
+resetCalc = () => {
+    input.value = "";
+    evalOutput.innerHTML = "0+0=";
+}
 
 inputValue = (rcpnt) => {
     setFocus();
@@ -117,38 +88,16 @@ function hasOperator(string){
 
 async function evaluate() {
     let solvePromise = new Promise(function(resolve){
-        for(let val of operatorsSet){
-            if(input.value.includes(val)){
-                let operatorInUse = val;
-                let input1 = input.value.split(operatorInUse)[0];
-                let input2 = input.value.split(operatorInUse)[1];
-                if(operatorInUse == "/"){
-                    resolve(divide(input1, input2));
-                }else if(operatorInUse == "&times" || operatorInUse == "×" || operatorInUse == "*"){
-                    resolve(multiply(input1, input2));
-                }else if(operatorInUse == "-"){
-                    resolve(subtract(input1, input2));
-                }else if(operatorInUse == "+"){
-                    resolve(add(input1, input2));
-                }
-                evalOutput.innerHTML = input1 + operatorInUse + input2 + "=";
-            }
+        input.value = removeLetters(input.value);
+        let result = eval(removeLetters(input.value));
+        evalOutput.innerHTML = input.value + "=";
+        if(result.toString().includes(".")){
+            result = removeZeros(result.toFixed("7"));
         }
+        resolve(result);
     });
 
     input.value = await solvePromise;
-}
-
-async function checkOperators(){
-    let moreThanOne = new Promise(function(resolve){        
-    let myTester = input.value;
-    let lastOperatorRemoved = myTester.substring(0, myTester.length - 1);
-        if(hasOperator(myTester[myTester.length - 1]) && hasOperator(lastOperatorRemoved)){          
-            input.value = lastOperatorRemoved;
-            evaluate();
-        }
-    })
-    input.value += await moreThanOne;
 }
 
 equalsBtn.addEventListener("click", evaluate);
@@ -157,4 +106,16 @@ function removeEvaluationOutput(){
     evalOutput.innerHTML = "";
 }
 
-input.addEventListener("keydown", removeEvaluationOutput)
+input.addEventListener("keydown", removeEvaluationOutput);
+
+function removeLetters(x){
+    let input = [];
+    for(let i = 0; i <= x.split("").length - 1; i++){
+        if(!isNaN(x[i]) || operatorsSet.has(x[i])){
+            input.push(x[i]);
+        }
+    }
+    return input.join("");
+}
+
+// do not allow letters
