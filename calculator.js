@@ -14,6 +14,7 @@ const equalsBtn = document.getElementById("equals");
 themeBtns = [...themeBtns];
 let add, subtract, divide, multiply, deleteInput, resetCalc, inputValue;
 
+// Change themes when theme button is clicked
 for(let i = 0; i < themeBtns.length; i++){
     themeBtns[i].addEventListener("click", function(){
         if(i == 0){
@@ -26,15 +27,16 @@ for(let i = 0; i < themeBtns.length; i++){
     })
 }
 
-themeBtns[0].click();
+themeBtns[0].click(); // select blue theme by default
 
+// Remove unnecessary zeros for floating point numbers
 function removeZeros(value){
     value = value.split("");
     if(value.includes(".")){
         for(let i = value.length; i >= 0; i--){
-            if(value[i] == "."){
+            if(value[i] == "." || value[value.length - 1] !== "0"){
                 break;
-            }else if(value[i] != "." && value[i] == 0){
+            }else if(value[i] == "0"){
                 value.pop();
             }
         }
