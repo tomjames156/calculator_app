@@ -2,7 +2,7 @@
 let themeBtns = document.getElementById("select-theme").children;
 let body = document.querySelector("body.theme");
 const evalOutput = document.getElementById("evaluation");
-const operatorsSet = new Set(["/", "&times", "+", "-", "×","*", "."]);
+const operatorsSet = new Set(["/", "&times", "+", "-", "*", ".", "(", ")", "[", "]"]);
 const operators = document.querySelectorAll("p.operator");
 const numbers = document.querySelectorAll("p.number");
 const input = document.getElementById("input");
@@ -66,7 +66,11 @@ for(let i = 0; i < operators.length; i++){
         if(operatorsSet.has(input.value[input.value.length - 1])){
             input.value = input.value.substring(0, input.value.length - 1);
         }
-        input.value += operators[i].innerHTML;
+        if(operators[i].innerHTML != "×"){
+            input.value += operators[i].innerHTML;
+        }else if(operators[i].innerHTML == "&times;" || operators[i].innerHTML == "×"){
+            input.value += "*";
+        }
     })    
 }
 
@@ -88,13 +92,19 @@ function hasOperator(string){
 
 async function evaluate() {
     let solvePromise = new Promise(function(resolve){
-        input.value = removeLetters(input.value);
-        let result = eval(removeLetters(input.value));
+    try{
+        let result = eval(input.value);
         evalOutput.innerHTML = input.value + "=";
         if(result.toString().includes(".")){
             result = removeZeros(result.toFixed("7"));
         }
         resolve(result);
+    }
+    catch(error){
+        evalOutput.innerHTML = "Invalid Input";
+        resolve("Syntax Error");
+    }
+        
     });
 
     input.value = await solvePromise;
@@ -108,14 +118,14 @@ function removeEvaluationOutput(){
 
 input.addEventListener("keydown", removeEvaluationOutput);
 
-function removeLetters(x){
-    let input = [];
-    for(let i = 0; i <= x.split("").length - 1; i++){
-        if(!isNaN(x[i]) || operatorsSet.has(x[i])){
-            input.push(x[i]);
-        }
-    }
-    return input.join("");
-}
+// function removeLetters(x){
+//     let input = [];
+//     for(let i = 0; i <= x.split("").length - 1; i++){
+//         if(!isNaN(x[i]) || !operatorsSet.has(x[i])){
+//             input.push(x[i]);
+//         }
+//     }
+//     return input.join("");
+// }
 
 // do not allow letters
