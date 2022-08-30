@@ -117,15 +117,3 @@ function removeEvaluationOutput(){
 }
 
 input.addEventListener("keydown", removeEvaluationOutput);
-
-// function removeLetters(x){
-//     let input = [];
-//     for(let i = 0; i <= x.split("").length - 1; i++){
-//         if(!isNaN(x[i]) || !operatorsSet.has(x[i])){
-//             input.push(x[i]);
-//         }
-//     }
-//     return input.join("");
-// }
-
-// do not allow letters
