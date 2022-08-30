@@ -67,7 +67,7 @@ inputValue = (rcpnt) => {
 for(let i = 0; i < operators.length; i++){
     operators[i].addEventListener("click", () => {
         removeEvaluationOutput();
-        if(operatorsSet.has(input.value[input.value.length - 1])){
+        if(operatorsSet.has(input.value[input.value.length - 1]) && operators[i].innerHTML != "-"){
             input.value = input.value.substring(0, input.value.length - 1);
         }
         if(operators[i].innerHTML != "×"){
