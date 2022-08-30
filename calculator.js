@@ -56,12 +56,14 @@ resetCalc = () => {
     evalOutput.innerHTML = "0+0=";
 }
 
+// Add number input when clicked
 inputValue = (rcpnt) => {
     setFocus();
     removeEvaluationOutput();
     input.value += rcpnt.innerHTML;
 };
 
+// Add operators when clicked 
 for(let i = 0; i < operators.length; i++){
     operators[i].addEventListener("click", () => {
         removeEvaluationOutput();
@@ -76,22 +78,12 @@ for(let i = 0; i < operators.length; i++){
     })    
 }
 
+// Focus on the input field
 function setFocus(){
     input.focus();
 }
 
-function hasOperator(string){
-    let current_status = false;
-    for(let operator of operatorsSet){
-        if(string.includes(operator)){
-            current_status = true;
-        }
-    }
-
-    return current_status;
-}
-
-
+// Compute the calculation
 async function evaluate() {
     let solvePromise = new Promise(function(resolve){
     try{
@@ -114,6 +106,7 @@ async function evaluate() {
 
 equalsBtn.addEventListener("click", evaluate);
 
+// Remove evaluation displayer
 function removeEvaluationOutput(){
     evalOutput.innerHTML = "";
 }
