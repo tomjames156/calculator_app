@@ -112,6 +112,3 @@ function removeEvaluationOutput(){
 }
 
 input.addEventListener("keydown", removeEvaluationOutput);
-
-// localStorage.setItem("users_last_theme", body.classList);
-// themeBtns[(localStorage.getItem("users_last_theme"))]
