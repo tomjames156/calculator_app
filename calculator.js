@@ -53,7 +53,7 @@ deleteInput = () => input.value = input.value.substring(0, input.value.length - 
 
 resetCalc = () => {
     input.value = "";
-    evalOutput.innerHTML = "0+0=";
+    evalOutput.innerHTML = "";
 }
 
 // Add number input when clicked
