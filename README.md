@@ -25,7 +25,6 @@ Users should be able to:
 - See the size of the elements adjust based on their device's screen size
 - Perform mathmatical operations like addition, subtraction, multiplication, and division
 - Adjust the color theme based on their preference
-- **Bonus**: Have their initial theme preference checked using `prefers-color-scheme` and have any additional changes saved in the browser
 
 ### Screenshot
 
@@ -56,8 +55,6 @@ Users should be able to:
 - CSS Grid
 - Desktop-first workflow
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
-
 ### What I learned
 
 I learnt about asynchronous functions which i used to make sure to get the calcuation result before displaying the result. I also made use of the try and except syntax to handle errors in case a user enters an unwanted data type.
@@ -70,5 +67,6 @@ I learnt about asynchronous functions which i used to make sure to get the calcu
 ## Author
 
 - Website - [Akinwande Tomisin](https://tomis-portfolio.netlify.app)
+- Github - [@tomjames156](https://github.com/tomjames156)
 - Frontend Mentor - [@tomjames156](https://www.frontendmentor.io/profile/tomjames156)
 - Twitter - [@tomisnakinwande](https://mobile.twitter.com/tomisnakinwande/)
