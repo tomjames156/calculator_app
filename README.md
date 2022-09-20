@@ -1,7 +1,5 @@
 # Frontend Mentor - Calculator app solution
 
-This is a solution to the [Calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29).
-
 ## Table of contents
 
 - [Overview](#overview)
@@ -16,7 +14,7 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 ## Overview
 
-This is a calculator web app built with HTML, CSS, SASS and JavaScript. It can perform basic calculations like addition, subtraction, multiplication and division.
+This is a testimonial grid section of a website built with HTML and CSS. It features responsive web design for smaller screen sizes.
 
 ### The challenge
 
