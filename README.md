@@ -14,7 +14,7 @@
 
 ## Overview
 
-This is a testimonial grid section of a website built with HTML and CSS. It features responsive web design for smaller screen sizes.
+This is a calculator web app made with HTML, CSS and JavaScript.
 
 ### The challenge
 
